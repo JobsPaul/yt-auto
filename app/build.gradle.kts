@@ -15,6 +15,16 @@ android {
         versionName = "1.0"
     }
 
+    // กุญแจเซ็นแอปคงที่ (ใช้ส่วนตัว) ให้ติดตั้งทับเวอร์ชันเก่าได้โดยไม่ต้องลบ
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("ytauto-debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     buildFeatures {
         buildConfig = true
     }
