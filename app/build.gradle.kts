@@ -15,6 +15,29 @@ android {
         versionName = "1.0"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
+    flavorDimensions += "mode"
+    productFlavors {
+        // แอปจริง: ประเภทนำทาง (ได้ Surface สำหรับวาดวิดีโอ)
+        create("nav") {
+            dimension = "mode"
+            manifestPlaceholders["carCategory"] = "androidx.car.app.category.NAVIGATION"
+            manifestPlaceholders["appLabel"] = "YT Auto"
+            buildConfigField("boolean", "NAV", "true")
+        }
+        // APK ทดสอบ: ประเภท POI แค่เช็กว่า Android Auto ยอมแสดงแอปที่ติดตั้งเองไหม
+        create("poitest") {
+            dimension = "mode"
+            applicationIdSuffix = ".test"
+            manifestPlaceholders["carCategory"] = "androidx.car.app.category.POI"
+            manifestPlaceholders["appLabel"] = "YT Test"
+            buildConfigField("boolean", "NAV", "false")
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

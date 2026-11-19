@@ -23,7 +23,7 @@ class MainActivity : Activity() {
         val pad = (16 * resources.displayMetrics.density).toInt()
 
         val title = TextView(this).apply {
-            text = getString(R.string.app_name)
+            text = applicationInfo.loadLabel(packageManager)
             textSize = 26f
             setTypeface(typeface, android.graphics.Typeface.BOLD)
             setPadding(0, 0, 0, pad / 2)

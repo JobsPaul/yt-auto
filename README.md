@@ -12,8 +12,8 @@
 
 ## Build APK
 **วิธีที่ 1: Android Studio**: เปิดโฟลเดอร์นี้ แล้วกด Build > Build APK(s)
-หรือรันใน terminal: `./gradlew assembleDebug`
-ไฟล์ที่ได้อยู่ที่ `app/build/outputs/apk/debug/app-debug.apk`
+หรือรันใน terminal: `./gradlew assembleNavDebug`
+ไฟล์ที่ได้อยู่ที่ `app/build/outputs/apk/nav/debug/app-nav-debug.apk`
 
 **วิธีที่ 2: GitHub Actions**: push ขึ้น GitHub repo แล้ว workflow `Build APK` จะ build ให้
 ดาวน์โหลดได้จากหน้า Actions > run ล่าสุด > Artifacts
