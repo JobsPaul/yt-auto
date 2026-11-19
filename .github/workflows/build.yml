@@ -21,3 +21,8 @@ jobs:
         with:
           name: YtAuto-debug-apk
           path: app/build/outputs/apk/debug/*.apk
+      - name: Show APK manifest
+        run: |
+          AAPT2=$(ls -d $ANDROID_HOME/build-tools/*/aapt2 | sort -V | tail -1)
+          $AAPT2 dump badging app/build/outputs/apk/debug/app-debug.apk | head -20
+          $AAPT2 dump xmltree --file AndroidManifest.xml app/build/outputs/apk/debug/app-debug.apk
