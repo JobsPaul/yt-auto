@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YT Auto</string>
+    <string name="action_search">ค้นหา</string>
+    <string name="action_play_pause">เล่น/หยุด</string>
+    <string name="action_back">ย้อน</string>
+    <string name="action_home">หน้าแรก</string>
+    <string name="search_hint">ค้นหาวิดีโอ YouTube</string>
+    <string name="blocked_moving">รถกำลังเคลื่อนที่\nจอดรถก่อนจึงจะดูวิดีโอได้</string>
+    <string name="blocked_unknown">ยังไม่รู้ความเร็วรถ\nกำลังรอข้อมูลความเร็วจากรถหรือ GPS…</string>
+</resources>
