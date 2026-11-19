@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 /** หน้าจอบนมือถือ: ขอสิทธิ์ตำแหน่งและแสดงวิธีเปิดใช้บน Android Auto */
 class MainActivity : Activity() {
@@ -17,7 +19,15 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        actionBar?.hide()
         val pad = (16 * resources.displayMetrics.density).toInt()
+
+        val title = TextView(this).apply {
+            text = getString(R.string.app_name)
+            textSize = 26f
+            setTypeface(typeface, android.graphics.Typeface.BOLD)
+            setPadding(0, 0, 0, pad / 2)
+        }
 
         status = TextView(this).apply { textSize = 16f }
         val grant = Button(this).apply {
@@ -52,13 +62,23 @@ class MainActivity : Activity() {
         val col = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(pad, pad, pad, pad)
+            addView(title)
             addView(status)
             addView(grant)
             addView(guide)
         }
-        setContentView(ScrollView(this).apply {
+        val scroll = ScrollView(this).apply {
             addView(col, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
-        })
+        }
+        // Android 15 วาดแอปเต็มจอ: เว้นที่ให้แถบสถานะ/แถบนำทาง ไม่ให้เนื้อหาถูกบัง
+        ViewCompat.setOnApplyWindowInsetsListener(scroll) { v, insets ->
+            val bars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+            insets
+        }
+        setContentView(scroll)
     }
 
     override fun onResume() {
